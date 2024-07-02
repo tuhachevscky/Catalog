@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог товаров</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .catalog-item {
+            border: 1px solid #ccc;
+            padding: 16px;
+            margin: 16px;
+            text-align: center;
+        }
+        .catalog-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .reserve-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .reserve-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Каталог товаров</h1>
+    <div id="catalog"></div>
+
+    <script>
+        const catalog = [
+            {name: 'Товар 1', description: 'Описание товара 1', price: 10000, available: true, category: 'Категория 1', image: 'ссылка на изображение 1', parameter: 'Параметр 1'},
+            {name: 'Товар 2', description: 'Описание товара 2', price: 15000, available: false, category: 'Категория 2', image: 'ссылка на изображение 2', parameter: 'Параметр 2'},
+            {name: 'Товар 3', description: 'Описание товара 3', price: 20000, available: true, category: 'Категория 1', image: 'ссылка на изображение 3', parameter: 'Параметр 3'}
+        ];
+
+        const catalogContainer = document.getElementById('catalog');
+
+        catalog.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'catalog-item';
+            itemDiv.innerHTML = `
+                <h2>${item.name}</h2>
+                <p>${item.description}</p>
+                <p>Цена: ${item.price} AMD</p>
+                <p>Наличие: ${item.available ? 'В наличии' : 'Нет в наличии'}</p>
+                <p>Категория: ${item.category}</p>
+                <p>Параметр: ${item.parameter}</p>
+                <img src="${item.image}" alt="${item.name}">
+                <button class="reserve-button" ${item.available ? '' : 'disabled'}>Резервировать</button>
+            `;
+            catalogContainer.appendChild(itemDiv);
+        });
+    </script>
+</body>
+</html>
